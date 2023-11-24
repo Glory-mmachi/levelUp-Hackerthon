@@ -1,4 +1,5 @@
 const accordionEl = document.querySelectorAll(".accordion-cont");
+const labelAccordionEl = document.querySelectorAll(".acc-click");
 const tickEl = document.querySelectorAll(".tick");
 const completedCountEl = document.querySelector(".completed");
 const arrowDown = document.querySelector(".arrow-down");
@@ -10,7 +11,7 @@ const notificationEl = document.querySelector(".one");
 const alertEl = document.querySelector(".alert");
 const topHeaderEl = document.querySelector(".top-header");
 const removeEl = document.querySelector(".remove");
-const secEl=document.querySelector(".sec")
+const secEl = document.querySelector(".sec");
 
 // console.log(maiContentEl);
 
@@ -23,7 +24,7 @@ function toggleAlert() {
   }
 }
 
-function toggleDropdown() {
+function toggleDropdownMenu() {
   alertEl.style.display = "none";
   dropDownEl.classList.toggle("hidden");
 }
@@ -37,15 +38,30 @@ const removeActive = function (index) {
   });
 };
 
-accordionEl.forEach((el, i) => {
-  let contentBox = el.querySelector(".content-box");
-  el.addEventListener("click", () => {
-    if (!el.classList.contains("active")) {
+const openNext = function (index) {
+  accordionEl.forEach((el, i) => {
+    let contentBox = el.querySelector(".content-box");
+    if (i === index) {
+      el.classList.add("active");
       contentBox.style.height = "120px";
     } else {
+      el.classList.remove("active");
       contentBox.style.height = "0px";
     }
-    el.classList.toggle("active");
+  });
+};
+
+labelAccordionEl.forEach((ele, i) => {
+  ele.addEventListener("click", () => {
+    accordionEl.forEach((el) => {
+      let contentBox = el.querySelector(".content-box");
+      el.classList.add("active");
+      if (!el.classList.contains("active")) {
+        contentBox.style.height = "0px";
+      } else {
+        contentBox.style.height = "120px";
+      }
+    });
     removeActive(i);
   });
 });
@@ -67,7 +83,8 @@ arrowDown.addEventListener("click", function () {
 });
 
 // /////////////
-tickEl.forEach((el) => {
+tickEl.forEach((el, i) => {
+  let next = i + 1;
   el.addEventListener("click", function () {
     const currentSrc = this.getAttribute("src");
     const checkmarkSrc =
@@ -75,7 +92,6 @@ tickEl.forEach((el) => {
     const componentSrc = "./Component 14.svg";
 
     if (currentSrc === checkmarkSrc) {
-
       this.setAttribute("src", componentSrc);
       if (Number(completedCountEl.innerHTML) > 0) {
         // update count
@@ -85,8 +101,8 @@ tickEl.forEach((el) => {
         topBlackEl.style.width = `${completedCountEl.innerHTML * 20}%`;
       }
     } else if (currentSrc === componentSrc) {
-      
       this.setAttribute("src", checkmarkSrc);
+      openNext(next);
       this.style.width = "25px";
       if (Number(completedCountEl.innerHTML) < 6) {
         completedCountEl.innerHTML = Number(completedCountEl.innerHTML) + 1;
@@ -96,9 +112,9 @@ tickEl.forEach((el) => {
   });
 });
 
-dcEl.addEventListener("click", toggleDropdown);
-dropDownEl.addEventListener("click", toggleDropdown);
-secEl.addEventListener("click", toggleDropdown);
+dcEl.addEventListener("click", toggleDropdownMenu);
+dropDownEl.addEventListener("click", toggleDropdownMenu);
+secEl.addEventListener("click", toggleDropdownMenu);
 
 alertEl.addEventListener("click", toggleAlert);
 notificationEl.addEventListener("click", toggleAlert);
