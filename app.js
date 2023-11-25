@@ -2,7 +2,7 @@ const accordionEl = document.querySelectorAll(".accordion-cont");
 const labelAccordionEl = document.querySelectorAll(".acc-click");
 const tickEl = document.querySelectorAll(".tick");
 const completedCountEl = document.querySelector(".completed");
-const arrowDown = document.querySelector(".arrow-down");
+const arrowUp = document.querySelector(".arrow-up");
 const maiContentEl = document.querySelector(".main-content");
 const topBlackEl = document.querySelector(".top-black");
 const dcEl = document.querySelector(".two");
@@ -13,10 +13,32 @@ const topHeaderEl = document.querySelector(".top-header");
 const removeEl = document.querySelector(".remove");
 const secEl = document.querySelector(".sec");
 
-// console.log(maiContentEl);
 
+function handleMenuEscapeKeypress(e) {
+  if (e.key === "Escape") {
+    toggleDropdownMenu();
+  }
+}
+function closeMenu() {
+  dcEl.ariaExpanded = "false";
+  dcEl.focus();
+  secEl.focus()
+}
+function openMenu() {
+  // get all the menu items in the dropdown
+  const allMenueItems = dropDownEl.querySelectorAll('[role="menuitem"]');
+
+  dcEl.ariaExpanded = "true";
+  // Focus the first menu item in the dropdown when it is shown
+  allMenueItems.item(0).focus();
+
+  dropDownEl.addEventListener('keyup', handleMenuEscapeKeypress);
+}
 function toggleAlert() {
+  // Hode the dropdown menu when the alert is clicked
   dropDownEl.classList.add("hidden");
+
+  // Toggle the display of the alert element to show or hide it
   if (alertEl.style.display == "inline-flex") {
     alertEl.style.display = "none";
   } else {
@@ -25,10 +47,20 @@ function toggleAlert() {
 }
 
 function toggleDropdownMenu() {
+  // Get the expanded state of the dropdown
+  const isExpanded = dcEl.attributes["aria-expanded"].value == "true";
+
+  // Hide the alert popup when the dropdown menu is shown
   alertEl.style.display = "none";
+  // Toggle the hidden class to show or hide the dropdown menu
   dropDownEl.classList.toggle("hidden");
+  if (isExpanded) {
+    closeMenu();
+  } else {
+    openMenu();
+  }
 }
-const removeActive = function (index) {
+function removeActive(index) {
   accordionEl.forEach((el, i) => {
     if (i !== index) {
       el.classList.remove("active");
@@ -36,10 +68,12 @@ const removeActive = function (index) {
       contentBox.style.height = "0px";
     }
   });
-};
+}
 
-const openNext = function (index) {
+// Open the next accordion when the current one is checked
+function openNext(index) {
   accordionEl.forEach((el, i) => {
+    //
     let contentBox = el.querySelector(".content-box");
     if (i === index) {
       el.classList.add("active");
@@ -49,7 +83,7 @@ const openNext = function (index) {
       contentBox.style.height = "0px";
     }
   });
-};
+}
 
 labelAccordionEl.forEach((ele, i) => {
   ele.addEventListener("click", () => {
@@ -66,15 +100,15 @@ labelAccordionEl.forEach((ele, i) => {
   });
 });
 
-arrowDown.addEventListener("click", function () {
+arrowUp.addEventListener("click", function () {
   if (
-    arrowDown.attributes.src.value ==
+    arrowUp.attributes.src.value ==
     "https://crushingit.tech/hackathon-assets/icon-arrow-up.svg"
   ) {
-    arrowDown.attributes.src.value =
+    arrowUp.attributes.src.value =
       "https://crushingit.tech/hackathon-assets/icon-arrow-down.svg";
   } else {
-    arrowDown.attributes.src.value =
+    arrowUp.attributes.src.value =
       "https://crushingit.tech/hackathon-assets/icon-arrow-up.svg";
   }
 
@@ -120,5 +154,5 @@ alertEl.addEventListener("click", toggleAlert);
 notificationEl.addEventListener("click", toggleAlert);
 
 removeEl.addEventListener("click", function () {
-  topHeaderEl.style.visibility = "hidden";
+  topHeaderEl.style.display = "none";
 });

@@ -47,7 +47,7 @@
         ><input type="text" placeholder="Search" />
       </div>
       <div class="right">
-        <div class="one">
+        <button class="one">
           <svg
             width="41"
             height="40"
@@ -62,40 +62,56 @@
               fill="#fff"
             />
           </svg>
-        </div>
-        <div class="two">
+        </button>
+        <button
+          class="two"
+          id="profile-menu"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="profile-menu-content"
+        >
           <div class="name">Davil Collections</div>
           <div class="accr">DC</div>
+        </button>
+        <div
+          class="accr sec"
+          class="two"
+          aria-haspopup="true"
+          aria-expanded="false"
+          aria-controls="profile-menu-content"
+        >
+          DC
         </div>
-        <div class="accr sec">DC</div>
       </div>
     </div>
 
     <!-- dropdown -->
 
     <div class="dropdown hidden">
-      <button class="search">
-        <div class="left"><span>DC</span>Davil Collections</div>
-        <div class="right">
-          <svg
-            width="30"
-            height="40"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="12" cy="12" r="10" fill="transparent"></circle>
-            <path
-              d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
-              fill="#000"
-            ></path>
-          </svg>
-        </div>
-      </button>
-      <ul>
+      <ul id="profile-menu-content" role="menu" aria-label="profile-menu">
+        <li>
+          <button class="search" role="menuitem">
+            <div class="left"><span>DC</span>Davil Collections</div>
+            <div class="right">
+              <svg
+                width="30"
+                height="40"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle cx="12" cy="12" r="10" fill="transparent"></circle>
+                <path
+                  d="M17.2738 8.52629C17.6643 8.91682 17.6643 9.54998 17.2738 9.94051L11.4405 15.7738C11.05 16.1644 10.4168 16.1644 10.0263 15.7738L7.3596 13.1072C6.96908 12.7166 6.96908 12.0835 7.3596 11.693C7.75013 11.3024 8.38329 11.3024 8.77382 11.693L10.7334 13.6525L15.8596 8.52629C16.2501 8.13577 16.8833 8.13577 17.2738 8.52629Z"
+                  fill="#000"
+                ></path>
+              </svg>
+            </div>
+          </button>
+        </li>
         <li class="li-two">
           <a href="https://admin.shopify.com"
-            ><button>
+            ><button role="menuitem">
               <span
                 ><svg
                   width="20"
@@ -118,30 +134,34 @@
         </li>
         <hr />
         <li>
-          <a href=" https://admin.shopify.com"><button>Help Center</button></a>
-        </li>
-        <li>
-          <a href=" https://admin.shopify.com"><button>Changelog</button></a>
-        </li>
-        <li>
           <a href=" https://admin.shopify.com"
-            ><button>Community forum</button></a
+            ><button role="menuitem">Help Center</button></a
           >
         </li>
         <li>
           <a href=" https://admin.shopify.com"
-            ><button>Hire a Shopify Partner</button></a
+            ><button role="menuitem">Changelog</button></a
+          >
+        </li>
+        <li>
+          <a href=" https://admin.shopify.com"
+            ><button role="menuitem">Community forum</button></a
+          >
+        </li>
+        <li>
+          <a href=" https://admin.shopify.com"
+            ><button role="menuitem">Hire a Shopify Partner</button></a
           >
         </li>
         <li>
           <a href=" https://admin.shopify.com">
-            <button>Keyboard shortcuts</button>
+            <button role="menuitem">Keyboard shortcuts</button>
           </a>
         </li>
         <hr />
         <li>
           <a href="https://admin.shopify.com">
-            <button>
+            <button role="menuitem">
               David Micheal<br />
               <p>davidmicheal@gmail.com</p>
             </button>
@@ -149,11 +169,13 @@
         </li>
         <li>
           <a href="https://admin.shopify.com">
-            <button>Manage account</button></a
+            <button role="menuitem">Manage account</button></a
           >
         </li>
         <li>
-          <a href="https://admin.shopify.com"> <button>Log out</button></a>
+          <a href="https://admin.shopify.com">
+            <button role="menuitem">Log out</button></a
+          >
         </li>
       </ul>
     </div>
@@ -163,8 +185,8 @@
       <header>
         <div class="left">Alert</div>
         <div class="right">
-          <span
-            ><svg
+          <button>
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -182,10 +204,11 @@
               <path
                 d="M5.5 9.25C5.08579 9.25 4.75 9.58579 4.75 10C4.75 10.4142 5.08579 10.75 5.5 10.75H14.5C14.9142 10.75 15.25 10.4142 15.25 10C15.25 9.58579 14.9142 9.25 14.5 9.25H5.5Z"
                 fill="#000"
-              /></svg
-          ></span>
-          <span
-            ><svg
+              />
+            </svg>
+          </button>
+          <button>
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -201,8 +224,9 @@
                 clip-rule="evenodd"
                 d="M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10ZM15.5 10C15.5 13.0376 13.0376 15.5 10 15.5C6.96243 15.5 4.5 13.0376 4.5 10C4.5 6.96243 6.96243 4.5 10 4.5C13.0376 4.5 15.5 6.96243 15.5 10Z"
                 fill="#000"
-              /></svg
-          ></span>
+              />
+            </svg>
+          </button>
         </div>
       </header>
       <p>Alerts about your store and account will show here</p>
@@ -213,7 +237,9 @@
       <header class="top-header">
         <div class="lef">
           <p>Extend your trial for $1/month for 3 months on select plan</p>
-         <a href="https://shopify.com/pricing"> <button>Select a plan</button></a>
+          <a href="https://shopify.com/pricing">
+            <button>Select a plan</button></a
+          >
         </div>
         <div class="right">
           <svg
@@ -247,25 +273,27 @@
           </div>
 
           <div class="right">
-            <img
-              class="arrow-down"
-              src="https://crushingit.tech/hackathon-assets/icon-arrow-down.svg"
-              alt="arrow"
-            />
+            <button>
+              <img
+                class="arrow-up"
+                src="https://crushingit.tech/hackathon-assets/icon-arrow-up.svg"
+                alt="arrow"
+              />
+            </button>
           </div>
         </section>
 
         <!-- content -->
         <!-- top label -->
         <!-- 1 -->
-        <section class="main-content">
-          <div class="accordion-cont">
+        <section class="main-content active">
+          <div class="accordion-cont active">
             <div class="label-top">
               <img class="tick" src="./Component 14.svg" alt="" />
               <h3 class="acc-click">Customize your online store</h3>
             </div>
             <!-- content -->
-            <div class="content-box ">
+            <div class="content-box">
               <div class="content-left">
                 <div class="label">
                   <p>
@@ -292,7 +320,7 @@
               <h3 class="acc-click">Add your first product</h3>
             </div>
             <!-- content -->
-            <div class="content-box ">
+            <div class="content-box">
               <div class="content-left">
                 <div class="label">
                   <p>
@@ -329,7 +357,7 @@
               <h3 class="acc-click">Add a custom domain</h3>
             </div>
             <!-- content -->
-            <div class="content-box ">
+            <div class="content-box">
               <div class="content-left">
                 <div class="label">
                   <p>
@@ -357,7 +385,7 @@
             </div>
 
             <!-- content -->
-            <div class="content-box ">
+            <div class="content-box">
               <div class="content-left">
                 <div class="label">
                   <p>
@@ -385,7 +413,7 @@
             </div>
 
             <!-- content -->
-            <div class="content-box ">
+            <div class="content-box">
               <div class="content-left">
                 <div class="label">
                   <p>
